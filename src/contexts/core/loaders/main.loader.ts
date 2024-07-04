@@ -1,4 +1,4 @@
-import { EnvVarMapMainType } from '../env-var-map/main.type';
+import { EnvVarMapMainType } from '@core/env-var-map/main.type';
 
 export const MainLoader = (): EnvVarMapMainType => ({
   server: {
@@ -12,5 +12,6 @@ export const MainLoader = (): EnvVarMapMainType => ({
     host: process.env.MUSES_HOST as string,
     name: process.env.MUSES_NAME as string,
     protocol: process.env.MUSES_PROTOCOL as string,
+    proxyURL: process.env.MUSES_PROXY_URL as string,
   },
 });

@@ -1,5 +1,5 @@
-import { MainLoader } from './main.loader';
-import { ServerType } from '../env-var-map/server/server.type';
+import { MainLoader } from '@core/loaders/main.loader';
+import { ServerType } from '@core/env-var-map/server/server.type';
 import { registerAs } from '@nestjs/config';
 
 export const ServerLoader = registerAs(

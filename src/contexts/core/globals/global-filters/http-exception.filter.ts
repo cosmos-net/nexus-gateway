@@ -1,11 +1,12 @@
 import {
-  ExceptionFilter,
-  Catch,
   ArgumentsHost,
+  Catch,
+  ExceptionFilter,
   HttpException,
   Logger,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+// eslint-disable-next-line sort-imports
 import { Request, Response } from 'express';
 
 @Catch(HttpException)

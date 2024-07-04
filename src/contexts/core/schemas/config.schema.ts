@@ -1,5 +1,5 @@
 import * as Joi from 'joi';
-import { EnvironmentEnum } from '../enums/environment.enum';
+import { EnvironmentEnum } from '@core/enums/environment.enum';
 
 export const ConfigSchema = Joi.object({
   HOST: Joi.string().required(),
@@ -10,4 +10,5 @@ export const ConfigSchema = Joi.object({
   MUSES_HOST: Joi.string().required(),
   MUSES_NAME: Joi.string().required(),
   MUSES_PROTOCOL: Joi.string().required(),
+  MUSES_PROXY_URL: Joi.string().required(),
 });

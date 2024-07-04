@@ -16,6 +16,38 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@core": [
+        "src/contexts/core"
+      ],
+      "@core/*": [
+        "src/contexts/core/*"
+      ],
+      "@hades": [
+        "src/contexts/hades"
+      ],
+      "@hades/*": [
+        "src/contexts/hades/*"
+      ],
+      "@muses": [
+        "src/contexts/muses"
+      ],
+      "@muses/*": [
+        "src/contexts/muses/*"
+      ],
+      "@cerberus": [
+        "src/contexts/cerberus"
+      ],
+      "@cerberus/*": [
+        "src/contexts/cerberus/*"
+      ],
+      "@health": [
+        "src/contexts/health"
+      ],
+      "@health/*": [
+        "src/contexts/health/*"
+      ],
+    }
   }
 }
