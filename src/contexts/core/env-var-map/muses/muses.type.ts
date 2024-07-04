@@ -3,4 +3,5 @@ export type MusesType = {
   host: string;
   port: number;
   protocol: string;
+  proxyURL: string;
 };
