@@ -7,13 +7,7 @@ import { Module } from '@nestjs/common';
 import { MusesContext } from '@muses/muses.context';
 
 @Module({
-  imports: [
-    CerberusContext,
-    HadesContext,
-    MusesContext,
-    HealthContext,
-    ConfigModule.forRoot(MainConfigOptions),
-  ],
+  imports: [CerberusContext, HadesContext, MusesContext, HealthContext, ConfigModule.forRoot(MainConfigOptions)],
   controllers: [],
   providers: [],
 })
