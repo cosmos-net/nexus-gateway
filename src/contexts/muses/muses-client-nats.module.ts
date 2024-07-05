@@ -1,6 +1,6 @@
 import { ClientsModule, Transport } from '@nestjs/microservices';
 
-export const clientMusesNats = ClientsModule.register([
+export const MusesClientNatsModule = ClientsModule.register([
   {
     name: 'NATS_SERVICE',
     transport: Transport.NATS,

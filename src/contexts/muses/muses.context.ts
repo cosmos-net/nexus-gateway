@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { clientMusesNats } from './client-muses-nats.module';
+import { MusesClientNatsModule } from './muses-client-nats.module';
 
 @Module({
-  imports: [clientMusesNats],
+  imports: [MusesClientNatsModule],
   exports: [],
 })
 export class MusesContext {}

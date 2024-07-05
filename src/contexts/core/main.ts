@@ -8,7 +8,7 @@ import { ServerType } from './env-var-map/server/server.type';
 import { TransformInterceptor } from './globals/global-interceptors/transform.interceptor';
 import { ValidationPipeWithExceptionFactory } from './globals/global-pipes/validation.pipe';
 
-async function bootstrap() {
+async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
 
   const configService = app.get(ConfigService);
@@ -26,15 +26,9 @@ async function bootstrap() {
   app.useGlobalInterceptors(new TransformInterceptor());
   app.useGlobalFilters(new HttpExceptionFilter(configService));
   app.setGlobalPrefix('api/');
-  app.useGlobalPipes(
-    new ValidationPipeWithExceptionFactory(),
-    new ValidationPipe({ forbidUnknownValues: true }),
-  );
+  app.useGlobalPipes(new ValidationPipeWithExceptionFactory(), new ValidationPipe({ forbidUnknownValues: true }));
 
-  const originMuses =
-    server.host === 'localhost'
-      ? `${muses.protocol}://${muses.host}:${muses.port}`
-      : `${muses.protocol}://${muses.host}`;
+  const originMuses = server.host === 'localhost' ? `${muses.protocol}://${muses.host}:${muses.port}` : `${muses.protocol}://${muses.host}`;
 
   app.enableCors({
     origin: originMuses,
@@ -44,9 +38,7 @@ async function bootstrap() {
 
   const port = server.port;
 
-  await app.listen(port, () =>
-    Logger.log(`Running on port ${port}`, server.name),
-  );
+  await app.listen(port, () => Logger.log(`Running on port ${port}`, server.name));
 }
 
 bootstrap();
