@@ -1,10 +1,11 @@
 import { Logger, ValidationPipe } from '@nestjs/common';
-import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
-import { HttpExceptionFilter } from './globals/global-filters/http-exception.filter';
-import { MusesType } from './env-var-map/muses/muses.type';
 import { NestFactory } from '@nestjs/core';
+
+import { AppModule } from './app.module';
+import { MusesType } from './env-var-map/muses/muses.type';
 import { ServerType } from './env-var-map/server/server.type';
+import { HttpExceptionFilter } from './globals/global-filters/http-exception.filter';
 import { TransformInterceptor } from './globals/global-interceptors/transform.interceptor';
 import { ValidationPipeWithExceptionFactory } from './globals/global-pipes/validation.pipe';
 
@@ -26,9 +27,15 @@ async function bootstrap(): Promise<void> {
   app.useGlobalInterceptors(new TransformInterceptor());
   app.useGlobalFilters(new HttpExceptionFilter(configService));
   app.setGlobalPrefix('api/');
-  app.useGlobalPipes(new ValidationPipeWithExceptionFactory(), new ValidationPipe({ forbidUnknownValues: true }));
+  app.useGlobalPipes(
+    new ValidationPipeWithExceptionFactory(),
+    new ValidationPipe({ forbidUnknownValues: true }),
+  );
 
-  const originMuses = server.host === 'localhost' ? `${muses.protocol}://${muses.host}:${muses.port}` : `${muses.protocol}://${muses.host}`;
+  const originMuses =
+    server.host === 'localhost'
+      ? `${muses.protocol}://${muses.host}:${muses.port}`
+      : `${muses.protocol}://${muses.host}`;
 
   app.enableCors({
     origin: originMuses,

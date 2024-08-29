@@ -1,10 +1,4 @@
-import {
-  ArgumentsHost,
-  Catch,
-  ExceptionFilter,
-  HttpException,
-  Logger,
-} from '@nestjs/common';
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 // eslint-disable-next-line sort-imports
 import { Request, Response } from 'express';
@@ -21,26 +15,29 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const request = ctx.getRequest<Request>();
     const status = exception.getStatus();
     const exceptionResponse = exception.getResponse() as Record<string, string>;
-    const isProduction =
-      this.config.get<string>('servers.serverEnv') === 'production';
+    const isProduction = this.config.get<string>('servers.serverEnv') === 'production';
 
-    const { message, error } = exceptionResponse;
+    const { message, name, stack } = exceptionResponse;
 
-    this.logger.error(
-      `Http Status: ${status} Error: ${JSON.stringify(
-        exceptionResponse,
-      )}} Path: ${request.url} stack ${exception.stack}`,
-    );
+    this.logger.error('====================================================');
+    this.logger.error(`Error HTTP Status: ${status}`);
+    this.logger.error(`Error endpoint: ${request.url}`);
+    this.logger.error(`Error method: ${request.method}`);
+    this.logger.error(`Error message: ${message}`);
+    this.logger.error(`Error name: ${name}`);
+    this.logger.error(`Error stack: ${stack}`);
+    this.logger.error('====================================================');
 
     response.status(status).json({
       statusCode: status,
       errors: {
-        error,
+        name,
         message,
       },
       data: {},
       timestamp: new Date().toISOString(),
       path: request.url,
+      method: request.method,
       ...(!isProduction && { stack: exception.stack }),
     });
   }

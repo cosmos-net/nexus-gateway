@@ -1,5 +1,10 @@
-import { type ConfigFactory, type ConfigModuleOptions, ConfigService, ConfigModule as NestConfigModule } from '@nestjs/config';
 import { type DynamicModule, Module } from '@nestjs/common';
+import {
+  type ConfigFactory,
+  type ConfigModuleOptions,
+  ConfigService,
+  ConfigModule as NestConfigModule,
+} from '@nestjs/config';
 
 @Module({})
 export class ConfigModule {
