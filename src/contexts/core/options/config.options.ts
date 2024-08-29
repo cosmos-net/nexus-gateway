@@ -1,7 +1,8 @@
 import { ConfigModuleOptions } from '@nestjs/config';
-import { ConfigSchema } from '@core/schemas/config.schema';
+
 import { MusesLoader } from '@core/loaders/muses.loader';
 import { ServerLoader } from '@core/loaders/server.loader';
+import { ConfigSchema } from '@core/schemas/config.schema';
 
 export const MainConfigOptions: ConfigModuleOptions = {
   cache: true,

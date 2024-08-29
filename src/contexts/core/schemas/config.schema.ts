@@ -1,4 +1,5 @@
 import * as Joi from 'joi';
+
 import { EnvironmentEnum } from '@core/enums/environment.enum';
 
 export const ConfigSchema = Joi.object({
