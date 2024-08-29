@@ -1,15 +1,15 @@
-import { MUSES_ECOSYSTEM_MODULE } from '@muses/ecosystem/constants';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 
+import { CLIENT_PROXY_NAME } from '@muses/commons/constants';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     ClientsModule.register([
       {
-        name: 'NATS_SERVICE',
+        name: CLIENT_PROXY_NAME,
         transport: Transport.NATS,
         options: {
           servers: ['nats://localhost:4222'],
@@ -20,7 +20,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
   exports: [
     ClientsModule.register([
       {
-        name: 'NATS_SERVICE',
+        name: CLIENT_PROXY_NAME,
         transport: Transport.NATS,
         options: {
           servers: ['nats://localhost:4222'],
