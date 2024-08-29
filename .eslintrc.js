@@ -1,117 +1,140 @@
+/* eslint-env node */
 module.exports = {
+  root: true,
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: 'tsconfig.json',
-    tsconfigRootDir: __dirname,
+    project: './tsconfig.eslint.json',
     sourceType: 'module',
-    ecmaVersion: 2024,
+    exclude: ['.eslintrc.js'],
+    include: ['./src/**/*.ts', './src/**/*.tsx'],
   },
-  plugins: ['@typescript-eslint/eslint-plugin', 'node', 'prettier'],
+  plugins: ['@typescript-eslint', 'import', 'prettier', 'rxjs'],
   extends: [
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
     'eslint:recommended',
-    'plugin:node/recommended',
-    'plugin:import/recommended',
-    'prettier',
-    'airbnb-base'
+    'plugin:@typescript-eslint/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
+    'plugin:prettier/recommended',
   ],
-  root: true,
-  env: {
-    node: true,
-    es6: true,
-    jest: true
-  },
-  ignorePatterns: ['.eslintrc.js'],
-  'rules': {
-    'block-scoped-var': "error",
-    'eqeqeq': "error",
-    'no-var': "error",
-    'no-console': "error",
-    'prefer-const': "error",
-    'eol-last': "error",
-    'prefer-arrow-callback': "error",
-    'no-trailing-spaces': "error",
-    'quotes': ['warn', 'single', { avoidEscape: true }],
-    'no-restricted-properties': [
-      "error",
+  rules: {
+    'no-console': 'warn',
+    'no-debugger': 'warn',
+    'no-unused-vars': 'off',
+    'import/no-relative-parent-imports': 'off',
+    'import/no-unresolved': 'error',
+    'no-restricted-imports': [
+      'error',
       {
-        object: "describe",
-        'property': "only"
+        paths: [
+          {
+            name: '.*',
+            message: 'import is restricted, use module name mapper with your alias @...',
+          },
+        ],
+        patterns: ['../*', './*', 'src/*'],
+      },
+    ],
+    'prettier/prettier': [
+      'error',
+      {
+        singleQuote: true,
+        trailingComma: 'all',
+        printWidth: 100,
+        tabWidth: 2,
+      },
+    ],
+    'import/order': [
+      'error',
+      {
+        groups: ['builtin', 'external', 'internal', ['parent', 'sibling', 'index']],
+        'newlines-between': 'always',
+        alphabetize: { order: 'asc', caseInsensitive: true },
+      },
+    ],
+    '@typescript-eslint/no-explicit-any': 'warn',
+    '@typescript-eslint/no-inferrable-types': 'off',
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/explicit-function-return-type': 'warn',
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: 'default',
+        format: ['camelCase'],
+        leadingUnderscore: 'allow',
+        trailingUnderscore: 'allow',
       },
       {
-        object: "it",
-        property: "only"
-      }
-    ],
-    'linebreak-style': 0,
-    'prettier/prettier': [
-      "error",
+        selector: 'variable',
+        format: ['camelCase', 'UPPER_CASE'],
+        leadingUnderscore: 'allow',
+        trailingUnderscore: 'allow',
+      },
       {
-        'endOfLine': "auto"
-      }
+        selector: 'function',
+        format: ['camelCase'],
+      },
+      {
+        selector: 'typeLike',
+        format: ['PascalCase'],
+      },
+      {
+        selector: 'interface',
+        format: ['PascalCase'],
+        custom: {
+          regex: '^I[A-Z][a-zA-Z]*$',
+          match: true,
+        },
+      },
+      {
+        selector: 'enum',
+        format: ['PascalCase'],
+      },
+      {
+        selector: 'enumMember',
+        format: ['UPPER_CASE'],
+      },
     ],
-    'id-length': [error, { min: 2 }],
-    'comma-dangle': 0,
-    'max-params': [error, 3],
-    'node/no-unsupported-features/es-syntax': ["error", { ignores: ['modules'] }],
-    'import/no-unresolved': 'off',
-    'node/no-missing-import': 'off',
-    'import/prefer-default-export': 'off',
-    'no-useless-constructor': 'off',
-    'no-use-before-define': 'off',
-    'import/extensions': 'off',
-    'object-curly-newline': 'off',
-    'no-underscore-dangle': 'off',
-    'import/no-absolute-path': 'off',
-    'node/no-unpublished-import': 'off',
-    'import/no-extraneous-dependencies': 'off',
-    'class-methods-use-this': 'off',
-    'lines-between-class-members': 'off',
-    'camelcase': 'off',
-    'operator-linebreak': 'off',
-    'implicit-arrow-linebreak': 'off',
-    'function-paren-newline': 'off',
-    'no-shadow': 'off',
-    'indent': 'off',
-    'brace-style': 'off'
-  },
-  overrides: [
-    {
-      files: ['**/*.ts', '**/*.tsx'],
-      parser: '@typescript-eslint/parser',
-      rules: {
-        '@typescript-eslint/no-non-null-assertion': 'off',
-        '@typescript-eslint/no-use-before-define': 'off',
-        '@typescript-eslint/no-warning-comments': 'off',
-        '@typescript-eslint/no-empty-function': 'error',
-        '@typescript-eslint/no-var-requires': 'error',
-        '@typescript-eslint/explicit-function-return-type': 'error',
-        '@typescript-eslint/explicit-module-boundary-types': 'error',
-        '@typescript-eslint/ban-types': 'error',
-        '@typescript-eslint/no-unused-vars': 'error',
-        '@typescript-eslint/naming-convention': [
-          error,
-          {
-            selector: 'interface',
-            format: ['PascalCase'],
-            custom: {
-              regex: '^I[A-Z]',
-              match: true
-            }
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-empty-interface': 'warn',
+    '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+    '@typescript-eslint/ban-types': [
+      'error',
+      {
+        types: {
+          Object: {
+            message: 'Avoid using the `Object` type. Did you mean `object`?',
           },
-          {
-            selector: 'enum',
-            format: ['PascalCase'],
-            custom: {
-              regex: '^[a-zA-Z]+Enum',
-              match: true
-            }
-          }
-        ],
-        '@typescript-eslint/no-explicit-any': 'off',
-        '@typescript-eslint/no-inferrable-types': 'off'
-      }
-    }
-  ]
+          Function: {
+            message:
+              'Avoid using the `Function` type. Prefer a specific function type, like `() => void`.',
+          },
+          Boolean: {
+            message: 'Avoid using the `Boolean` type. Did you mean `boolean`?',
+          },
+          Number: {
+            message: 'Avoid using the `Number` type. Did you mean `number`?',
+          },
+          String: {
+            message: 'Avoid using the `String` type. Did you mean `string`?',
+          },
+          Symbol: {
+            message: 'Avoid using the `Symbol` type. Did you mean `symbol`?',
+          },
+        },
+      },
+    ],
+  },
+  settings: {
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+        project: './tsconfig.json',
+      },
+      node: {
+        paths: ['src'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+      },
+    },
+  },
 };
