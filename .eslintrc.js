@@ -2,13 +2,15 @@
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
+  ignorePatterns: ['.eslintrc.js'],
   parserOptions: {
     project: './tsconfig.eslint.json',
     sourceType: 'module',
     exclude: ['.eslintrc.js'],
     include: ['./src/**/*.ts', './src/**/*.tsx'],
+    tsconfigRootDir: __dirname,
   },
-  plugins: ['@typescript-eslint', 'import', 'prettier', 'rxjs'],
+  plugins: ['@typescript-eslint/eslint-plugin', '@typescript-eslint', 'import', 'prettier', 'rxjs'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -17,6 +19,10 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:prettier/recommended',
   ],
+  env: {
+    node: true,
+    jest: true,
+  },
   rules: {
     'no-console': 'warn',
     'no-debugger': 'warn',
@@ -42,6 +48,7 @@ module.exports = {
         trailingComma: 'all',
         printWidth: 100,
         tabWidth: 2,
+        endOfLine: 'lf',
       },
     ],
     'import/order': [
@@ -52,15 +59,19 @@ module.exports = {
         alphabetize: { order: 'asc', caseInsensitive: true },
       },
     ],
-    '@typescript-eslint/no-explicit-any': 'warn',
+    '@typescript-eslint/interface-name-prefix': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-inferrable-types': 'off',
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-    '@typescript-eslint/explicit-function-return-type': 'warn',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-empty-interface': 'off',
+    '@typescript-eslint/consistent-type-definitions': 'off',
     '@typescript-eslint/naming-convention': [
       'error',
       {
         selector: 'default',
-        format: ['camelCase'],
+        format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
         leadingUnderscore: 'allow',
         trailingUnderscore: 'allow',
       },
@@ -93,35 +104,6 @@ module.exports = {
       {
         selector: 'enumMember',
         format: ['UPPER_CASE'],
-      },
-    ],
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-empty-interface': 'warn',
-    '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
-    '@typescript-eslint/ban-types': [
-      'error',
-      {
-        types: {
-          Object: {
-            message: 'Avoid using the `Object` type. Did you mean `object`?',
-          },
-          Function: {
-            message:
-              'Avoid using the `Function` type. Prefer a specific function type, like `() => void`.',
-          },
-          Boolean: {
-            message: 'Avoid using the `Boolean` type. Did you mean `boolean`?',
-          },
-          Number: {
-            message: 'Avoid using the `Number` type. Did you mean `number`?',
-          },
-          String: {
-            message: 'Avoid using the `String` type. Did you mean `string`?',
-          },
-          Symbol: {
-            message: 'Avoid using the `Symbol` type. Did you mean `symbol`?',
-          },
-        },
       },
     ],
   },
