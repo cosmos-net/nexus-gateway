@@ -1,6 +1,6 @@
 import { registerAs } from '@nestjs/config';
 
-import { ServerType } from '@core/env-var-map/server/server.type';
-import { MainLoader } from '@core/loaders/main.loader';
+import { IServerType } from '@core/env-var-map/server/server.type';
+import { mainLoader } from '@core/loaders/main.loader';
 
-export const ServerLoader = registerAs('server', (): ServerType => MainLoader().server);
+export const serverLoader = registerAs('server', (): IServerType => mainLoader().server);

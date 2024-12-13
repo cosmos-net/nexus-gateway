@@ -1,8 +1,8 @@
-import * as Joi from 'joi';
+import Joi from 'joi';
 
 import { EnvironmentEnum } from '@core/enums/environment.enum';
 
-export const ConfigSchema = Joi.object({
+export const configSchema = Joi.object({
   HOST: Joi.string().required(),
   PORT: Joi.number().required(),
   NAME: Joi.string().required(),
