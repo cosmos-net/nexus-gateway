@@ -1,4 +1,4 @@
-export interface MusesType {
+export interface IMusesType {
   name: string;
   host: string;
   port: number;
