@@ -29,4 +29,4 @@ import { HADES_CLIENT_CONTEXT_PROXY_NAME } from '@hades/commons/commands-name';
     ]),
   ],
 })
-export class MusesClientNatsModule {}
+export class HadesClientNatsModule {}
