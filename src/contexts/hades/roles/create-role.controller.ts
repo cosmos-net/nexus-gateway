@@ -4,9 +4,9 @@ import { lastValueFrom } from 'rxjs';
 
 import { recoverErrorType } from '@common/helpers/error-management';
 import { COMMANDS_HADES, HADES_CLIENT_CONTEXT_PROXY_NAME } from '@hades/commons/commands-name';
-import { HADES_ROL_ENDPOINT } from '@hades/commons/end-points';
+import { HADES_ROLE_ENDPOINT } from '@hades/commons/end-points';
 
-@Controller(HADES_ROL_ENDPOINT)
+@Controller(HADES_ROLE_ENDPOINT)
 export class CreateRoleController {
   constructor(
     @Inject(HADES_CLIENT_CONTEXT_PROXY_NAME)
@@ -17,7 +17,7 @@ export class CreateRoleController {
   async create(@Body() input: unknown): Promise<unknown> {
     try {
       const output = await lastValueFrom(
-        this.clientProxy.send({ cmd: COMMANDS_HADES.ROL.CREATE }, input),
+        this.clientProxy.send({ cmd: COMMANDS_HADES.ROLE.CREATE }, input),
       );
 
       return output;
