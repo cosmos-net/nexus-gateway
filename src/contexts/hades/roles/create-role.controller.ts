@@ -3,13 +3,13 @@ import { ClientProxy } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
 
 import { recoverErrorType } from '@common/helpers/error-management';
-import { COMMANDS_MUSES, MUSES_CLIENT_CONTEXT_PROXY_NAME } from '@muses/commons/commands-name';
-import { MUSES_PROJECT_ENDPOINT } from '@muses/commons/end-points';
+import { COMMANDS_HADES, HADES_CLIENT_CONTEXT_PROXY_NAME } from '@hades/commons/commands-name';
+import { HADES_ROLE_ENDPOINT } from '@hades/commons/end-points';
 
-@Controller(MUSES_PROJECT_ENDPOINT)
-export class CreateProjectController {
+@Controller(HADES_ROLE_ENDPOINT)
+export class CreateRoleController {
   constructor(
-    @Inject(MUSES_CLIENT_CONTEXT_PROXY_NAME)
+    @Inject(HADES_CLIENT_CONTEXT_PROXY_NAME)
     private readonly clientProxy: ClientProxy,
   ) {}
 
@@ -17,7 +17,7 @@ export class CreateProjectController {
   async create(@Body() input: unknown): Promise<unknown> {
     try {
       const output = await lastValueFrom(
-        this.clientProxy.send({ cmd: COMMANDS_MUSES.PROJECT.CREATE }, input),
+        this.clientProxy.send({ cmd: COMMANDS_HADES.ROLE.CREATE }, input),
       );
 
       return output;
