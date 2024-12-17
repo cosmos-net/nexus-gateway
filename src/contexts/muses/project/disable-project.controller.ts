@@ -3,21 +3,21 @@ import { ClientProxy } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
 
 import { recoverErrorType } from '@common/helpers/error-management';
-import { CLIENT_PROXY_NAME } from '@muses/commons/constants';
-import { MUSES_PROJECT_DISABLE, MUSES_PROJECT_ENDPOINT } from '@muses/project/constants';
+import { COMMANDS_MUSES, MUSES_CLIENT_CONTEXT_PROXY_NAME } from '@muses/commons/commands-name';
+import { MUSES_PROJECT_ENDPOINT } from '@muses/commons/end-points';
 
 @Controller(MUSES_PROJECT_ENDPOINT)
 export class DisableProjectController {
   constructor(
-    @Inject(CLIENT_PROXY_NAME)
-    private clientProxy: ClientProxy,
+    @Inject(MUSES_CLIENT_CONTEXT_PROXY_NAME)
+    private readonly clientProxy: ClientProxy,
   ) {}
 
   @Delete('/:id')
   async disable(@Param() input: unknown): Promise<unknown> {
     try {
       const output = await lastValueFrom(
-        this.clientProxy.send({ cmd: MUSES_PROJECT_DISABLE }, input),
+        this.clientProxy.send({ cmd: COMMANDS_MUSES.PROJECT.DISABLE }, input),
       );
 
       return output;

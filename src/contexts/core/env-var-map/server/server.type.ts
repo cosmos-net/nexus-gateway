@@ -1,4 +1,4 @@
-export interface ServerType {
+export interface IServerType {
   name: string;
   host: string;
   port: number;

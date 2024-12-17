@@ -3,13 +3,13 @@ import { ClientProxy } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
 
 import { recoverErrorType } from '@common/helpers/error-management';
-import { COMMANDS_MUSES, MUSES_CLIENT_CONTEXT_PROXY_NAME } from '@muses/commons/commands-name';
-import { MUSES_SUB_MODULE_ENDPOINT } from '@muses/commons/end-points';
+import { HADES_CLIENT_CONTEXT_PROXY_NAME, COMMANDS_HADES } from '@hades/commons/commands-name';
+import { HADES_ROLE_ENDPOINT } from '@hades/commons/end-points';
 
-@Controller(MUSES_SUB_MODULE_ENDPOINT)
-export class UpdateSubModuleController {
+@Controller(HADES_ROLE_ENDPOINT)
+export class UpdateRoleController {
   constructor(
-    @Inject(MUSES_CLIENT_CONTEXT_PROXY_NAME)
+    @Inject(HADES_CLIENT_CONTEXT_PROXY_NAME)
     private readonly clientProxy: ClientProxy,
   ) {}
 
@@ -17,7 +17,7 @@ export class UpdateSubModuleController {
   async update(@Body() input: unknown): Promise<unknown> {
     try {
       const output = await lastValueFrom(
-        this.clientProxy.send({ cmd: COMMANDS_MUSES.SUB_MODULE.UPDATE }, input),
+        this.clientProxy.send({ cmd: COMMANDS_HADES.ROLE.UPDATE }, input),
       );
 
       return output;

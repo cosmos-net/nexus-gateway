@@ -1,14 +1,14 @@
 import { ConfigModuleOptions } from '@nestjs/config';
 
-import { MusesLoader } from '@core/loaders/muses.loader';
-import { ServerLoader } from '@core/loaders/server.loader';
-import { ConfigSchema } from '@core/schemas/config.schema';
+import { musesLoader } from '@core/loaders/muses.loader';
+import { serverLoader } from '@core/loaders/server.loader';
+import { configSchema } from '@core/schemas/config.schema';
 
-export const MainConfigOptions: ConfigModuleOptions = {
+export const mainConfigOptions: ConfigModuleOptions = {
   cache: true,
   isGlobal: true,
-  load: [ServerLoader, MusesLoader],
-  validationSchema: ConfigSchema,
+  load: [serverLoader, musesLoader],
+  validationSchema: configSchema,
   validationOptions: {
     allowUnknown: true,
     abortEarly: true,

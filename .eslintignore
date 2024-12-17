@@ -1,1 +1,9 @@
+!.vscode/
+!**/*.json
+!**/*.yml
+
+# ignore
+dist/
+Dockerfile
+package-lock.json
 .eslintrc.js
