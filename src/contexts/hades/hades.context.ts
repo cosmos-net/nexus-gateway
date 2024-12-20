@@ -11,7 +11,7 @@ import { UpdateRoleController } from '@hades/roles/update-role.controller';
 
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }), HadesClientNatsModule],
-  exports: [
+  controllers: [
     CreateRoleController,
     UpdateRoleController,
     ArchiveRoleController,
@@ -19,5 +19,6 @@ import { UpdateRoleController } from '@hades/roles/update-role.controller';
     GetRoleController,
     ListRoleController,
   ],
+  exports: [],
 })
 export class HadesContext {}
