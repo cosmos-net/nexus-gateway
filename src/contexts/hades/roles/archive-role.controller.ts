@@ -13,7 +13,7 @@ export class ArchiveRoleController {
     private readonly clientProxy: ClientProxy,
   ) {}
 
-  @Delete()
+  @Delete('archive')
   async archive(@Body() input: unknown): Promise<unknown> {
     try {
       const output = await lastValueFrom(
