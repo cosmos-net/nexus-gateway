@@ -2,19 +2,19 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 
-import { AppModule } from './app.module';
-import { MusesType } from './env-var-map/muses/muses.type';
-import { ServerType } from './env-var-map/server/server.type';
-import { HttpExceptionFilter } from './globals/global-filters/http-exception.filter';
-import { TransformInterceptor } from './globals/global-interceptors/transform.interceptor';
-import { ValidationPipeWithExceptionFactory } from './globals/global-pipes/validation.pipe';
+import { AppModule } from '@core/app.module';
+import { IMusesType } from '@core/env-var-map/muses/muses.type';
+import { IServerType } from '@core/env-var-map/server/server.type';
+import { HttpExceptionFilter } from '@core/globals/global-filters/http-exception.filter';
+import { TransformInterceptor } from '@core/globals/global-interceptors/transform.interceptor';
+import { ValidationPipeWithExceptionFactory } from '@core/globals/global-pipes/validation.pipe';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
 
   const configService = app.get(ConfigService);
-  const server = configService.get<ServerType>('server');
-  const muses = configService.get<MusesType>('muses');
+  const server = configService.get<IServerType>('server');
+  const muses = configService.get<IMusesType>('muses');
 
   if (!server) {
     throw new Error('Server configuration is missing');
