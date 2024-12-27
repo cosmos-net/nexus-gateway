@@ -13,7 +13,7 @@ export class DestroyRoleController {
     private readonly clientProxy: ClientProxy,
   ) {}
 
-  @Delete()
+  @Delete('destroy')
   async destroy(@Body() input: unknown): Promise<unknown> {
     try {
       const output = await lastValueFrom(
