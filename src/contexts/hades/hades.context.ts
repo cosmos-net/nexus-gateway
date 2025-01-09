@@ -10,6 +10,12 @@ import { GetRoleController } from '@hades/roles/get-role.controller';
 import { ListRoleController } from '@hades/roles/list-role.controller';
 import { UpdateRoleController } from '@hades/roles/update-role.controller';
 //Users
+import { ArchiveSessionController } from '@hades/sessions/archive-session.controller';
+import { CreateSessionController } from '@hades/sessions/create-session.controller';
+import { DestroySessionController } from '@hades/sessions/destroy-session.controller';
+import { GetSessionController } from '@hades/sessions/get-session.controller';
+import { ListSessionController } from '@hades/sessions/list-session.controller';
+import { UpdateSessionController } from '@hades/sessions/update-session.controller';
 import { ArchiveUserController } from '@hades/users/archive-user.controller';
 import { CreateUserController } from '@hades/users/create-user.controller';
 import { DestroyUserController } from '@hades/users/destroy-user.controller';
@@ -34,6 +40,13 @@ import { UpdateUserController } from '@hades/users/update-user.controller';
     DestroyUserController,
     GetUserController,
     ListUserController,
+    //Sessions
+    CreateSessionController,
+    UpdateSessionController,
+    ArchiveSessionController,
+    DestroySessionController,
+    GetSessionController,
+    ListSessionController,
   ],
   exports: [],
 })
