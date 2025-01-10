@@ -17,7 +17,19 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const exceptionResponse = exception.getResponse() as Record<string, string>;
     const isProduction = this.config.get<string>('servers.serverEnv') === 'production';
 
-    const { message, name, stack } = exceptionResponse;
+    let { message, name, stack } = exceptionResponse;
+
+    if (message === undefined) {
+      message = exception.message;
+    }
+
+    if (name === undefined) {
+      name = exception.name;
+    }
+
+    if (stack === undefined) {
+      stack = exception.stack;
+    }
 
     this.logger.error('====================================================');
     this.logger.error(`Error HTTP Status: ${status}`);
@@ -38,7 +50,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       timestamp: new Date().toISOString(),
       path: request.url,
       method: request.method,
-      ...(!isProduction && { stack: exception.stack }),
+      ...(!isProduction && { stack }),
     });
   }
 }
