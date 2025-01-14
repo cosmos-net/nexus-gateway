@@ -17,7 +17,7 @@ export class TransitionStatusSessionController {
   async update(@Body() input: unknown): Promise<unknown> {
     try {
       const output = await lastValueFrom(
-        this.clientProxy.send({ cmd: COMMANDS_HADES.SESSION.UPDATE }, input),
+        this.clientProxy.send({ cmd: COMMANDS_HADES.SESSION.TRANSITION_STATUS }, input),
       );
 
       return output;
