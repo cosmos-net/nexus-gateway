@@ -12,9 +12,11 @@ import { UpdateRoleController } from '@hades/roles/update-role.controller';
 //Users
 import { ActivateInvalidSessionController } from '@hades/sessions/activate-invalid-session.controller';
 import { ArchiveSessionController } from '@hades/sessions/archive-session.controller';
-import { CreateSessionController } from '@hades/sessions/create-session.controller';
+import { CreateActiveSessionController } from '@hades/sessions/create-active-session.controller';
+import { CreateInvalidSessionController } from '@hades/sessions/create-invalid-session.controller';
 import { DestroySessionController } from '@hades/sessions/destroy-session.controller';
 import { GetSessionController } from '@hades/sessions/get-session.controller';
+import { IncrementFailedAttemptsSessionController } from '@hades/sessions/increment-failed-attempts-session.controller';
 import { ListSessionController } from '@hades/sessions/list-session.controller';
 import { TransitionStatusSessionController } from '@hades/sessions/transition-status-session.controller';
 import { UpdateSessionController } from '@hades/sessions/update-session.controller';
@@ -45,8 +47,10 @@ import { UpdateUserController } from '@hades/users/update-user.controller';
     //Sessions
     ActivateInvalidSessionController,
     TransitionStatusSessionController,
-    CreateSessionController,
+    CreateActiveSessionController,
+    CreateInvalidSessionController,
     UpdateSessionController,
+    IncrementFailedAttemptsSessionController,
     ArchiveSessionController,
     DestroySessionController,
     GetSessionController,
