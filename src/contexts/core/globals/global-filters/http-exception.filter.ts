@@ -35,7 +35,9 @@ export class HttpExceptionFilter implements ExceptionFilter {
     this.logger.error(`Error HTTP Status: ${status}`);
     this.logger.error(`Error endpoint: ${request.url}`);
     this.logger.error(`Error method: ${request.method}`);
-    this.logger.error(`Error message: ${message}`);
+    this.logger.error(
+      `Error message: ${typeof message === 'string' ? message : JSON.stringify(message)}`,
+    );
     this.logger.error(`Error name: ${name}`);
     this.logger.error(`Error stack: ${stack}`);
     this.logger.error('====================================================');
