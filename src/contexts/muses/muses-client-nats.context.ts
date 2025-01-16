@@ -12,7 +12,7 @@ import { MUSES_CLIENT_CONTEXT_PROXY_NAME } from '@muses/commons/commands-name';
         name: MUSES_CLIENT_CONTEXT_PROXY_NAME,
         transport: Transport.NATS,
         options: {
-          servers: ['nats://localhost:4222'],
+          servers: ['nats://localhost:4223'],
         },
       },
     ]),
@@ -23,7 +23,7 @@ import { MUSES_CLIENT_CONTEXT_PROXY_NAME } from '@muses/commons/commands-name';
         name: MUSES_CLIENT_CONTEXT_PROXY_NAME,
         transport: Transport.NATS,
         options: {
-          servers: ['nats://localhost:4222'],
+          servers: ['nats://localhost:4223'],
         },
       },
     ]),
