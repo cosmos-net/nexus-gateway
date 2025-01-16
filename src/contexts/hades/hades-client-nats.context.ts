@@ -12,7 +12,7 @@ import { HADES_CLIENT_CONTEXT_PROXY_NAME } from '@hades/commons/commands-name';
         name: HADES_CLIENT_CONTEXT_PROXY_NAME,
         transport: Transport.NATS,
         options: {
-          servers: ['nats://localhost:4222'],
+          servers: ['nats://localhost:4223'],
         },
       },
     ]),
@@ -23,7 +23,7 @@ import { HADES_CLIENT_CONTEXT_PROXY_NAME } from '@hades/commons/commands-name';
         name: HADES_CLIENT_CONTEXT_PROXY_NAME,
         transport: Transport.NATS,
         options: {
-          servers: ['nats://localhost:4222'],
+          servers: ['nats://localhost:4223'],
         },
       },
     ]),
