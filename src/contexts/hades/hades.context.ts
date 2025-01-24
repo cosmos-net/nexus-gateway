@@ -1,6 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
+//Assignment
+import { ArchiveAssignmentByUuidController } from '@hades/assignments/archive-assignment-by-uuid.controller';
+import { DestroyAssignmentController } from '@hades/assignments/destroy-assignment.controller';
+import { GetAssignmentController } from '@hades/assignments/get-assignment.controller';
+import { ListAssignmentController } from '@hades/assignments/list-assigment.controller';
+import { UpdateAssignmentController } from '@hades/assignments/update-assignment.controller';
+import { CreateUserRoleAssignmentController } from '@hades/assignments/user-role-assignment.controller';
 import { HadesClientNatsModule } from '@hades/hades-client-nats.context';
 //Roles
 import { ArchiveRoleController } from '@hades/roles/archive-role.controller';
@@ -55,6 +62,13 @@ import { UpdateUserController } from '@hades/users/update-user.controller';
     DestroySessionController,
     GetSessionController,
     ListSessionController,
+    //Assignments
+    ArchiveAssignmentByUuidController,
+    DestroyAssignmentController,
+    GetAssignmentController,
+    ListAssignmentController,
+    UpdateAssignmentController,
+    CreateUserRoleAssignmentController,
   ],
   exports: [],
 })
