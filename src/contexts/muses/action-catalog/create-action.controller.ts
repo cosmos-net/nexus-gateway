@@ -4,10 +4,10 @@ import { lastValueFrom } from 'rxjs';
 
 import { recoverErrorType } from '@common/helpers/error-management';
 import { COMMANDS_MUSES, MUSES_CLIENT_CONTEXT_PROXY_NAME } from '@muses/commons/commands-name';
-import { MUSES_ECOSYSTEM_ENDPOINT } from '@muses/commons/end-points';
+import { MUSES_ACTION_CATALOG_ENDPOINT } from '@muses/commons/end-points';
 
-@Controller(MUSES_ECOSYSTEM_ENDPOINT)
-export class CreateEcosystemController {
+@Controller(MUSES_ACTION_CATALOG_ENDPOINT)
+export class CreateActionCatalogController {
   constructor(
     @Inject(MUSES_CLIENT_CONTEXT_PROXY_NAME)
     private readonly clientProxy: ClientProxy,
@@ -17,7 +17,7 @@ export class CreateEcosystemController {
   async create(@Body() input: unknown): Promise<unknown> {
     try {
       const output = await lastValueFrom(
-        this.clientProxy.send({ cmd: COMMANDS_MUSES.ECOSYSTEM.CREATE }, input),
+        this.clientProxy.send({ cmd: COMMANDS_MUSES.ACTION_CATALOG.CREATE }, input),
       );
 
       return output;

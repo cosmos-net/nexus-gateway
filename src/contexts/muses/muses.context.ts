@@ -6,6 +6,7 @@ import { DisableActionController } from '@muses/action/disable-action.controller
 import { GetActionController } from '@muses/action/get-action.controller';
 import { ListActionController } from '@muses/action/list-action.controller';
 import { UpdateActionController } from '@muses/action/update-action.controller';
+import { CreateActionCatalogController } from '@muses/action-catalog/create-action.controller';
 import { CreateEcosystemController } from '@muses/ecosystem/create-ecosystem.controller';
 import { DisableEcosystemController } from '@muses/ecosystem/disable-ecosystem.controller';
 import { GetEcosystemController } from '@muses/ecosystem/get-ecosystem.controller';
@@ -61,6 +62,7 @@ import { UpdateSubModuleController } from '@muses/sub-module/update-sub-module.c
     ListActionController,
     GetActionController,
     DisableActionController,
+    CreateActionCatalogController,
     CreateResourceController,
     UpdateResourceController,
     ListResourceController,
