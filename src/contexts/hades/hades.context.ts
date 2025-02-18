@@ -10,6 +10,13 @@ import { UpdateAssignmentController } from '@hades/assignments/update-assignment
 import { CreateUserRoleAssignmentController } from '@hades/assignments/user-role-assignment.controller';
 import { HadesClientNatsModule } from '@hades/hades-client-nats.context';
 //Roles
+import { ArchivePolicyController } from '@hades/policies/archive-policy.controller';
+import { CreatePolicyController } from '@hades/policies/create-policy.controller';
+import { DestroyPolicyController } from '@hades/policies/destroy-policy.controller';
+import { GetPolicyController } from '@hades/policies/get-policy.controller';
+import { ListPolicyController } from '@hades/policies/list-policy.controller';
+import { UnarchivePolicyController } from '@hades/policies/unarchive-policy.controller';
+import { UpdatePolicyController } from '@hades/policies/update-policy.controller';
 import { ArchiveRoleController } from '@hades/roles/archive-role.controller';
 import { CreateRoleController } from '@hades/roles/create-role.controller';
 import { DestroyRoleController } from '@hades/roles/destroy-role.controller';
@@ -69,6 +76,14 @@ import { UpdateUserController } from '@hades/users/update-user.controller';
     ListAssignmentController,
     UpdateAssignmentController,
     CreateUserRoleAssignmentController,
+    //Policies
+    CreatePolicyController,
+    UpdatePolicyController,
+    ArchivePolicyController,
+    UnarchivePolicyController,
+    DestroyPolicyController,
+    ListPolicyController,
+    GetPolicyController,
   ],
   exports: [],
 })
