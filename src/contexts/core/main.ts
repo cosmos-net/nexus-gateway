@@ -1,6 +1,7 @@
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
+import * as csrf from 'csrf';
 
 import { AppModule } from '@core/app.module';
 import { IMusesType } from '@core/env-var-map/muses/muses.type';
@@ -31,6 +32,8 @@ async function bootstrap(): Promise<void> {
     new ValidationPipeWithExceptionFactory(),
     new ValidationPipe({ forbidUnknownValues: true }),
   );
+
+  app.use(csrf);
 
   const originMuses =
     server.host === 'localhost'
