@@ -1,6 +1,7 @@
 {
   "conventionalCommits.scopes": [
     "core",
-    "assignment-module"
+    "assignment-module",
+    "dependencies"
   ]
 }
